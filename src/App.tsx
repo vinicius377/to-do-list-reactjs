@@ -6,6 +6,7 @@ import { Itens } from "./types/itens"
 
 
 const App=()=>{
+  document.title="ToDo List"
   const [task,setTask]=useState<Itens[]>([])
 
 

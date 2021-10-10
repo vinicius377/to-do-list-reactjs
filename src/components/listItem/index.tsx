@@ -9,9 +9,10 @@ type Props={
         done:boolean
         putDesc:(des:string,id:number)=>void
         excluir:(id:number)=>void
+        setDone:(id:number,done:boolean)=>void
 }
 
-export const List=({id,taskTitle,taskDescript,done,putDesc,excluir}:Props)=>{
+export const List=({id,taskTitle,taskDescript,done,putDesc,excluir,setDone}:Props)=>{
     const [desc,setDesc]=useState(true)
     const [edit,setEdit]=useState(false)
     const [isCheckd,setCheck]=useState(done)
@@ -23,9 +24,9 @@ export const List=({id,taskTitle,taskDescript,done,putDesc,excluir}:Props)=>{
     }
     return(
         
-        <C.Container  edit={edit} done={desc}check={isCheckd}>
+        <C.Container  edit={edit} done={desc} check={isCheckd}>
       
-            <div className="title" onClick={()=>setCheck(!isCheckd)} id="check">
+            <div className="title" onClick={()=>{setCheck(!isCheckd);setDone(id,isCheckd)}} id="check">
             <span onClick={(e)=>{setDesc(!desc);e.stopPropagation()}}> 🡩</span>
                 <label htmlFor="check">{taskTitle}</label>
             </div>

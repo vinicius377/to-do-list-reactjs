@@ -6,7 +6,7 @@ import { Itens } from "./types/itens"
 
 
 const App=()=>{
-  document.title="ToDo List"
+
   const [task,setTask]=useState<Itens[]>([])
 
 
@@ -41,15 +41,27 @@ const App=()=>{
     })
      localStorage.setItem(`${id}`,JSON.stringify({...newDescript}))
 }
-function Excluir(id:number){
-  let newlist=[...task]
-  newlist.forEach(element=>{
-      if(element.id===id){
-        localStorage.removeItem(`${id}`)
-        newlist.splice(id,id+1)
-      } 
+
+  function Excluir(id:number){
+    let newlist=[...task]
+    newlist.forEach(element=>{
+        if(element.id===id){
+          localStorage.removeItem(`${id}`)
+          newlist.splice(id,id+1)
+        } 
+    })
+    setTask(newlist)
+}
+
+function setDone(id:number,done:boolean){
+  let setDone={}
+
+  task.forEach(valor=>{
+    if(valor.id===id){
+      setDone={...valor,done:!done}
+    }
   })
-  setTask(newlist)
+   localStorage.setItem(`${id}`,JSON.stringify({...setDone}))
 }
 return (
   <C.Container >
@@ -64,7 +76,8 @@ return (
        taskDescript={task.taskDescript} 
        done={task.done} 
        putDesc={putDesc}
-       excluir={Excluir}/>)} 
+       excluir={Excluir}
+       setDone={setDone}/>)} 
      
    </C.Container>
   

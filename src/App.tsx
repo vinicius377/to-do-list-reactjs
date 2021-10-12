@@ -3,6 +3,7 @@ import {Form} from "./components/formulario"
 import {List} from "./components/listItem"
 import { useState, useEffect } from "react"
 import { Itens } from "./types/itens"
+import {formatData} from "./helpers/formatData"
 
 
 const App=()=>{
@@ -22,9 +23,10 @@ const App=()=>{
   
   
    function setLS(title:string){
+     let data= formatData(new Date)
     let id=localStorage.length+1
     let newtask=[...task]
-    newtask.push({id,taskTitle:title,taskDescript:"",done:false})
+    newtask.push({id,taskTitle:title,taskDescript:"",done:false,data})
     setTask(newtask)
     newtask.map(task=>{
       localStorage.setItem(id.toString(),JSON.stringify(task))
@@ -77,7 +79,8 @@ return (
        done={task.done} 
        putDesc={putDesc}
        excluir={Excluir}
-       setDone={setDone}/>)} 
+       setDone={setDone}
+       data={task.data}/>)} 
      
    </C.Container>
   

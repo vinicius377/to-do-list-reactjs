@@ -15,8 +15,11 @@ font-size:18px;
         align-items: center;
         box-sizing:border-box;
         border-right:${check?"solid 20px green":"none"};
-    label{
+        justify-content:space-between;
+    .titulo{
     color:white;
+    flex:1;
+    text-align:left;
     }
     span{
         color:white;
@@ -26,6 +29,10 @@ font-size:18px;
         transition: .5s;
         transform:rotate(${done?"0deg":"180deg"});
         cursor:pointer;
+    }
+    .data{
+        color:white;
+        font-size:14px;
     }
 }
 

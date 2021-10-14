@@ -19,7 +19,7 @@ const App=()=>{
           getTask.push(parse) 
       }
     setTask(getTask)
-    },[setTask])
+    },[])
   
   
    function setLS(title:string){
@@ -49,7 +49,7 @@ const App=()=>{
     newlist.forEach(element=>{
         if(element.id===id){
           localStorage.removeItem(`${id}`)
-          newlist.splice(id,id+1)
+          newlist.splice(id-1,id)
         } 
     })
     setTask(newlist)
@@ -73,7 +73,8 @@ return (
       <Form onPush={setLS}/>
       {task.map(task=> 
       <List 
-      id={task.id}
+        key={task.id}
+        id={task.id}
        taskTitle={task.taskTitle} 
        taskDescript={task.taskDescript} 
        done={task.done} 
